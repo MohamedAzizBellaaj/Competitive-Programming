@@ -7,13 +7,9 @@
 
 using namespace std;
 using namespace __gnu_pbds;
-typedef long int li;
+
 typedef long long ll;
 typedef long double ld;
-
-#define ook order_of_key  // Number of elements STRICTLY smaller than X
-#define fbo find_by_order //  *ITERATOR* pointing to the kth element (0 order)
-
 typedef pair<int, int> p32;
 typedef pair<ll, ll> p64;
 typedef pair<double, double> pdd;
@@ -37,12 +33,14 @@ ll MOD = 1000000007;
 #define pb push_back
 #define fi first
 #define se second
+#define ook order_of_key  // Number of elements STRICTLY smaller than X
+#define fbo find_by_order //  *ITERATOR* pointing to the kth element (0 order)
 #define all(_x) (_x).begin(), (_x).end()
 #define sz(_x) ((ll)(_x).size())
-#define forn(_i, _e) for (ll _i = 0; _i < _e; _i++)
-#define forsn(_i, _s, _e) for (ll _i = _s; _i < _e; _i++)
-#define rforn(_i, _s) for (ll _i = _s; _i >= 0; _i--)
-#define rforsn(_i, _s, _e) for (ll _i = _s; _i >= _e; _i--)
+#define forn(_i, _e) for (ll _i = 0; _i < _e; ++_i)
+#define forsn(_i, _s, _e) for (ll _i = _s; _i < _e; ++_i)
+#define rforn(_i, _s) for (ll _i = _s; _i >= 0; --_i)
+#define rforsn(_i, _s, _e) for (ll _i = _s; _i >= _e; --_i)
 #define tt     \
     ll _t;     \
     cin >> _t; \
@@ -93,8 +91,10 @@ ostream &operator<<(ostream &os, set<T> &intermediate_set)
 
 template <typename T>
 void print(T a) { cout << a; }
+void print() { cout << " "; }
 template <typename T>
 void println(T a) { cout << a << ln; }
+void println() { cout << ln; }
 template <typename T, typename... Args>
 void print(T a, Args... b)
 {
@@ -108,7 +108,7 @@ void println(T a, Args... b)
     println(b...);
 }
 template <typename T>
-void _debug(T a)
+void _dbg(T a)
 {
     if (typeid(a) == typeid(char))
         cout << '\'';
@@ -122,7 +122,7 @@ void _debug(T a)
     cout << "]" << ln;
 }
 template <typename T, typename... Args>
-void _debug(T a, Args... b)
+void _dbg(T a, Args... b)
 {
     if (typeid(a) == typeid(char))
         cout << '\'';
@@ -134,13 +134,13 @@ void _debug(T a, Args... b)
     if (typeid(a) == typeid(string))
         cout << '\"';
     cout << ",	";
-    _debug(b...);
+    _dbg(b...);
 }
 template <typename... Args>
-void debug(Args... b)
+void dbg(Args... b)
 {
     cout << '[';
-    _debug(b...);
+    _dbg(b...);
 }
 
 void swap(ll &x, ll &y)
@@ -169,26 +169,41 @@ ll powa(ll a, ll b, ll m = MOD)
         return x;
     }
 }
-string dectobin(ll n)
-{
-    string s = bitset<64>(n).to_string();
-    const auto loc1 = s.find('1');
-    if (loc1 != string::npos)
-        return s.substr(loc1);
-    return "0";
-}
-
 int main()
 {
+
     fast_cin();
-    string s;
-    getline(cin,s);
-    s32 set;
-    for(char c : s){
-        if(c>='a'&&c<='z')
-            set.ins(c);
+    string x, y;
+    while (cin >> x)
+    {
+        cin >> y;
+        reverse(all(x));
+        reverse(all(y));
+        int res[500];
+        memset(res, 0, sizeof(res));
+        forn(i, sz(x))
+        {
+            forn(j, sz(y))
+            {
+                res[i + j] += (x[i] - '0') * (y[j] - '0');
+            }
+        }
+        forn(i, sz(x) + sz(y))
+        {
+            res[i + 1] += res[i] / 10;
+            res[i] %= 10;
+        }
+        int n = sz(x) + sz(y);
+        while (n > 0 && res[n] == 0)
+        {
+            n--;
+        }
+        rforn(i, n)
+        {
+            cout << res[i];
+        }
+        cout << endl;
     }
-    print(sz(set));
 
     return 0;
 }

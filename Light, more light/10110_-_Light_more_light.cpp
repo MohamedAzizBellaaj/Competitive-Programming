@@ -37,17 +37,10 @@ ll MOD = 1000000007;
 #define fbo find_by_order //  *ITERATOR* pointing to the kth element (0 order)
 #define all(_x) (_x).begin(), (_x).end()
 #define sz(_x) ((ll)(_x).size())
-<<<<<<< HEAD
 #define forn(_i, _e) for (ll _i = 0; _i < _e; ++_i)
 #define forsn(_i, _s, _e) for (ll _i = _s; _i < _e; ++_i)
 #define rforn(_i, _s) for (ll _i = _s; _i >= 0; --_i)
 #define rforsn(_i, _s, _e) for (ll _i = _s; _i >= _e; --_i)
-=======
-#define forn(_i, _e) for (ll _i = 0; _i < _e; _i++)
-#define forsn(_i, _s, _e) for (ll _i = _s; _i < _e; _i++)
-#define rforn(_i, _s) for (ll _i = _s; _i >= 0; _i--)
-#define rforsn(_i, _s, _e) for (ll _i = _s; _i >= _e; _i--)
->>>>>>> 562bcecd50d0b0c93dae0ab479ecf9156888bc8c
 #define tt     \
     ll _t;     \
     cin >> _t; \
