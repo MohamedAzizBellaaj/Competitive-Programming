@@ -28,35 +28,35 @@ class Solution
 public:
     Node *connect(Node *root)
     {
-        Node *currParent = root, *baseChild, *currChild, *nextChild;
-        while (currParent)
+        Node *parent = root, *baseChild, *currChild, *nextChild;
+        while (parent)
         {
-            while (currParent->next && !currParent->left && !currParent->right)
+            while (parent->next && !parent->left && !parent->right)
             {
-                currParent = currParent->next;
+                parent = parent->next;
             }
-            currChild = baseChild = currParent->left ? currParent->left : currParent->right;
+            currChild = baseChild = parent->left ? parent->left : parent->right;
             while (currChild)
             {
                 nextChild = nullptr;
-                if (currParent->right && currChild != currParent->right)
-                    nextChild = currParent->right;
+                if (parent->right && currChild != parent->right)
+                    nextChild = parent->right;
                 else
                 {
-                    currParent = currParent->next;
-                    while (currParent && !currParent->left && !currParent->right)
+                    parent = parent->next;
+                    while (parent && !parent->left && !parent->right)
                     {
-                        currParent = currParent->next;
+                        parent = parent->next;
                     }
-                    if (currParent)
+                    if (parent)
                     {
-                        nextChild = currParent->left ? currParent->left : currParent->right;
+                        nextChild = parent->left ? parent->left : parent->right;
                     }
                 }
                 currChild->next = nextChild;
                 currChild = nextChild;
             }
-            currParent = baseChild;
+            parent = baseChild;
         }
         return root;
     }
