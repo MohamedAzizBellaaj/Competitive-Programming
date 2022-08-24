@@ -7,9 +7,11 @@
 // @lc code=start
 class MyCircularQueue
 {
-public:
+private:
     vector<int> q;
     int head = 0, tail = -1, size;
+
+public:
     MyCircularQueue(int k)
     {
         size = k;
