@@ -19,19 +19,40 @@
 class Solution
 {
 public:
-    void dfs(TreeNode *root, vector<int> &out)
-    {
-        if (root)
-        {
-            dfs(root->left, out);
-            out.push_back(root->val);
-            dfs(root->right, out);
-        }
-    }
+    // void dfs(TreeNode *root, vector<int> &out)
+    // {
+    //     if (root)
+    //     {
+    //         dfs(root->left, out);
+    //         out.push_back(root->val);
+    //         dfs(root->right, out);
+    //     }
+    // }
+    // vector<int> inorderTraversal(TreeNode *root)
+    // {
+    //     vector<int> out;
+    //     dfs(root, out);
+    //     return out;
+    // }
     vector<int> inorderTraversal(TreeNode *root)
     {
         vector<int> out;
-        dfs(root, out);
+        stack<TreeNode *> s;
+        while (root || !s.empty())
+        {
+            if (root)
+            {
+                s.push(root);
+                root = root->left;
+            }
+            else
+            {
+                root = s.top();
+                s.pop();
+                out.push_back(root->val);
+                root = root->right;
+            }
+        }
         return out;
     }
 };
