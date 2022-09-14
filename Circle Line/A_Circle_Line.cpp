@@ -179,24 +179,23 @@ ll powa(ll a, ll b, ll m = MOD)
 int main()
 {
     fast_cin();
-    int n;
+    int n, s, t, res1 = 0, res2 = 0;
     cin >> n;
-    v32 v(n), temp(n);
-    cin >> v;
-    temp = v;
-    sort(all(temp), greater<>());
-    unordered_map<int, int> m;
-    forn(i, n)
+    v32 v(n);
+    cin >> v >> s >> t;
+    int i = s - 1;
+    while (i != t - 1)
     {
-        if (m.find(temp[i]) == m.end())
-        {
-            m[temp[i]] = i + 1;
-        }
+        res1 += v[i];
+        i = (i + 1) % sz(v);
     }
-    forn(i, n)
+    i = t - 1;
+    while (i != s - 1)
     {
-        print(m[v[i]], "");
+        res2 += v[i];
+        i = (i + 1) % sz(v);
     }
+    print(min(res1, res2));
 
     return 0;
 }
