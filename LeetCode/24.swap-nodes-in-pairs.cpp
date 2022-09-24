@@ -18,17 +18,34 @@
 class Solution
 {
 public:
+    // ListNode *swapPairs(ListNode *head)
+    // {
+    //     if (!head || !head->next)
+    //     {
+    //         return head;
+    //     }
+    //     ListNode *tmp = head->next;
+    //     head->next = tmp->next;
+    //     tmp->next = head;
+    //     head->next = swapPairs(head->next);
+    //     return tmp;
+    // }
     ListNode *swapPairs(ListNode *head)
     {
         if (!head || !head->next)
         {
             return head;
         }
-        ListNode *tmp = head->next;
-        head->next = tmp->next;
-        tmp->next = head;
-        head->next = swapPairs(head->next);
-        return tmp;
+        ListNode *out = head->next, *prev = new ListNode();
+        while (head && head->next)
+        {
+            prev->next = head->next;
+            head->next = prev->next->next;
+            prev->next->next = head;
+            prev = head;
+            head = head->next;
+        }
+        return out;
     }
 };
 // @lc code=end
