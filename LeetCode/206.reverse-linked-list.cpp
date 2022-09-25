@@ -19,21 +19,31 @@
 class Solution
 {
 public:
-    ListNode *reverseList(ListNode *head,ListNode *pre = nullptr)
+    // ListNode *reverseList(ListNode *head, ListNode *prev = nullptr)
+    // {
+    //     if (head == nullptr)
+    //     {
+    //         return nullptr;
+    //     }
+    //     if (head->next == nullptr)
+    //     {
+    //         head->next = prev;
+    //         return head;
+    //     }
+    //     ListNode *aft = head->next;
+    //     head->next = prev;
+    //     return reverseList(aft, head);
+    // }
+    ListNode *reverseList(ListNode *head)
     {
-        if (head == nullptr)
+        if (!head || !head->next)
         {
             return head;
         }
-        if (head->next == nullptr)
-        {
-            head->next = pre;
-            return head;
-        }
-        ListNode *aft = head->next;
-        head->next = pre;
-        pre = head;
-        return reverseList(aft,pre);
+        ListNode *node = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return node;
     }
 };
 // @lc code=end
