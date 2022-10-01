@@ -184,7 +184,6 @@ int main()
     vs flag(n);
     cin >> flag;
     char adj = '0' - 1;
-    // dbg(flag);
     forn(i, n)
     {
         if (adj == flag[i][0])
