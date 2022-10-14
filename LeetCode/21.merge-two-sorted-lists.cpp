@@ -18,46 +18,67 @@
 class Solution
 {
 public:
+    // ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+    // {
+    //     if (list1 == nullptr)
+    //     {
+    //         return list2;
+    //     }
+    //     else if (list2 == nullptr)
+    //     {
+    //         return list1;
+    //     }
+    //     ListNode *head = new ListNode(), *tmp;
+    //     tmp = head;
+    //     while (list1 && list2)
+    //     {
+    //         if (list1->val < list2->val)
+    //         {
+    //             tmp->next = list1;
+    //             list1 = list1->next;
+    //         }
+    //         else
+    //         {
+    //             tmp->next = list2;
+    //             list2 = list2->next;
+    //         }
+    //         tmp = tmp->next;
+    //     }
+    //     while (list1)
+    //     {
+    //         tmp->next = list1;
+    //         list1 = list1->next;
+    //         tmp = tmp->next;
+    //     }
+    //     while (list2)
+    //     {
+    //         tmp->next = list2;
+    //         list2 = list2->next;
+    //         tmp = tmp->next;
+    //     }
+    //     tmp->next = nullptr;
+    //     return head->next;
+    // }
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
     {
-        if (list1 == nullptr)
+        if (!list1)
         {
             return list2;
         }
-        else if (list2 == nullptr)
+        if (!list2)
         {
             return list1;
         }
-        ListNode *head = new ListNode(), *tmp;
-        tmp = head;
-        while (list1 && list2)
+        if (list1->val < list2->val)
         {
-            if (list1->val < list2->val)
-            {
-                tmp->next = list1;
-                list1 = list1->next;
-            }
-            else
-            {
-                tmp->next = list2;
-                list2 = list2->next;
-            }
-            tmp = tmp->next;
+            list1->next = mergeTwoLists(list1->next, list2);
+            return list1;
         }
-        while (list1)
+        else
         {
-            tmp->next = list1;
-            list1 = list1->next;
-            tmp = tmp->next;
+            list2->next = mergeTwoLists(list2->next, list1);
+            return list2;
         }
-        while (list2)
-        {
-            tmp->next = list2;
-            list2 = list2->next;
-            tmp = tmp->next;
-        }
-        tmp->next = nullptr;
-        return head->next;
     }
 };
 // @lc code=end
