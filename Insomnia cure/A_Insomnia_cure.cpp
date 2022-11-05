@@ -186,6 +186,5 @@ int main()
         count += (i + 1) % k == 0 || (i + 1) % l == 0 || (i + 1) % m == 0 || (i + 1) % n == 0;
     }
     print(count);
-
     return 0;
 }
