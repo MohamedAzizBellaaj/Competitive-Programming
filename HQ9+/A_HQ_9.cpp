@@ -182,6 +182,5 @@ int main()
     string s;
     cin >> s;
     print((s.find_first_of("H") < sz(s) || s.find_first_of("Q") < sz(s) || s.find_first_of("9") < sz(s)) ? "YES" : "NO");
-    
     return 0;
 }
