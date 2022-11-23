@@ -176,38 +176,37 @@ ll powa(ll a, ll b, ll m = MOD)
         return x;
     }
 }
-bool find(char c, string s){
-    for(const char& x:s){
-        if(x == c){
-            return true;
-        }
-    }
-    return false;
-}
 int main()
 {
     fast_cin();
-    int n,m;
-    cin>>n>>m;
+    int n, m;
+    cin >> n >> m;
     vs v(n);
-    cin>>v;
-    int pos_first=INT_MAX,pos_last=INT_MIN;
-    forn(i,n){
-        if ((int)v[i].find_first_of('*') >= 0){
+    cin >> v;
+    int pos_first = INT_MAX, pos_last = INT_MIN;
+    forn(i, n)
+    {
+        if ((int)v[i].find_first_of('*') >= 0)
+        {
             pos_first = min(pos_first, (int)v[i].find_first_of('*'));
         }
-        pos_last=max(pos_last,(int)v[i].find_last_of('*'));
+        pos_last = max(pos_last, (int)v[i].find_last_of('*'));
     }
     int start = 0, end = n;
-    forn(i,n){
-        if(find('*',v[i])){
+    forn(i, n)
+    {
+        if ((int)v[i].find_first_of('*') >= 0)
+        {
             break;
-        }else{
+        }
+        else
+        {
             start++;
         }
     }
-    rforn(i,n-1){
-        if (find('*', v[i]))
+    rforn(i, n - 1)
+    {
+        if ((int)v[i].find_first_of('*') >= 0)
         {
             break;
         }
@@ -216,11 +215,13 @@ int main()
             end--;
         }
     }
-    forsn(i,start,end){
-        forsn(j,pos_first,pos_last+1){
+    forsn(i, start, end)
+    {
+        forsn(j, pos_first, pos_last + 1)
+        {
             print(v[i][j]);
         }
         println();
-        }
+    }
     return 0;
 }
