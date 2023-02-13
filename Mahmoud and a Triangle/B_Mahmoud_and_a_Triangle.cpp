@@ -187,7 +187,7 @@ int main()
     bool c = false;
     forn(i, n - 2)
     {
-        if (v[i] + v[i + 1] > v[i + 2] && v[i + 1] + v[i + 2] > v[i] && v[i + 2] + v[i] > v[i + 1])
+        if (v[i + 1] + v[i + 2] > v[i])
         {
             c = true;
             break;
