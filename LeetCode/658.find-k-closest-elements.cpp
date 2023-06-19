@@ -30,7 +30,6 @@ public:
             }
             else
             {
-                cout << "Here" << endl;
                 closestIndex = middle;
                 break;
             }
