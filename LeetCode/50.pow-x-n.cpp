@@ -8,35 +8,23 @@
 class Solution
 {
 public:
-    double myPow(double x, int n)
+    double myPow(double x, long n)
     {
-        if (x == 0 || x == 1)
-        {
-            return x;
-        }
         if (n == 0)
         {
             return 1;
         }
-        else
+        if (n < 0)
         {
-            double temp = myPow(x, n / 2);
-            if (n % 2 == 0)
-            {
-                return temp * temp;
-            }
-            else
-            {
-                if (n > 0)
-                {
-                    return x * temp * temp;
-                }
-                else
-                {
-                    return (temp * temp) / x;
-                }
-            }
+            return 1 / myPow(x, -n);
         }
+        double out = myPow(x * x, n / 2);
+        if (n % 2 == 1)
+        {
+            double rest = n < 0 ? 1 / x : x;
+            out *= rest;
+        }
+        return out;
     }
 };
 // @lc code=end

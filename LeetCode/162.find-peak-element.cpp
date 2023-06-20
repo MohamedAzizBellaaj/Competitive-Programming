@@ -14,7 +14,7 @@ public:
         while (left < right)
         {
             middle = left + (right - left) / 2;
-            if (middle + 1 == nums.size() || nums[middle] < nums[middle + 1])
+            if (middle == nums.size() - 1 || nums[middle] < nums[middle + 1])
             {
                 left = middle + 1;
             }
