@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=153 lang=cpp
+ * @lc app=leetcode id=154 lang=cpp
  *
- * [153] Find Minimum in Rotated Sorted Array
+ * [154] Find Minimum in Rotated Sorted Array II
  */
 
 // @lc code=start
@@ -18,9 +18,13 @@ public:
             {
                 left = middle + 1;
             }
-            else
+            else if (nums[middle] < nums[right])
             {
                 right = middle;
+            }
+            else
+            {
+                right--;
             }
         }
         return nums[left];
