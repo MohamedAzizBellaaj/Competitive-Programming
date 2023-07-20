@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=200 lang=cpp
+ * @lc app=leetcode id=695 lang=cpp
  *
- * [200] Number of Islands
+ * [695] Max Area of Island
  */
 
 // @lc code=start
@@ -13,31 +13,31 @@ private:
     {
         return y >= 0 && y < m && x >= 0 && x < n;
     }
-    void visit(vector<vector<char>> &grid, int i, int j)
+    int visit(vector<vector<int>> &grid, int i, int j)
     {
-        grid[i][j] = '0';
-        int m = grid.size(), n = grid.front().size();
-        for (const auto &[x, y] : directions)
+        grid[i][j] = 0;
+        int out = 1, m = grid.size(), n = grid.front().size();
+        for (const auto &[dx, dy] : directions)
         {
-            if (valid(i + y, j + x, m, n) && grid[i + y][x + j] == '1')
+            if (valid(i + dy, j + dx, m, n) && grid[i + dy][j + dx] == 1)
             {
-                visit(grid, i + y, j + x);
+                out += visit(grid, i + dy, j + dx);
             }
         }
+        return out;
     }
 
 public:
-    int numIslands(vector<vector<char>> &grid)
+    int maxAreaOfIsland(vector<vector<int>> &grid)
     {
         int out = 0, m = grid.size(), n = grid.front().size();
         for (int i = 0; i < m; ++i)
         {
             for (int j = 0; j < n; ++j)
             {
-                if (grid[i][j] == '1')
+                if (grid[i][j] == 1)
                 {
-                    out++;
-                    visit(grid, i, j);
+                    out = max(out, visit(grid, i, j));
                 }
             }
         }
