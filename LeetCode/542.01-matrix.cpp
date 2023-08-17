@@ -38,9 +38,8 @@ public:
             int size = q.size();
             for (int i = 0; i < size; i++)
             {
-                pair<int, int> p = q.front();
+                auto [y, x] = q.front();
                 q.pop();
-                int y = p.first, x = p.second;
                 for (const auto &[dy, dx] : directions)
                 {
                     if (isValid(y + dy, x + dx, m, n) and mat[y + dy][x + dx] == -1)
