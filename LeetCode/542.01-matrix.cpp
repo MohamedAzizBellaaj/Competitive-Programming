@@ -7,52 +7,51 @@
 // @lc code=start
 class Solution
 {
+private:
+    vector<pair<int, int>> directions{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    bool isValid(int y, int x, int m, int n)
+    {
+        return y >= 0 and y < m and x >= 0 and x < n;
+    }
+
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>> &mat)
     {
         int m = mat.size(), n = mat[0].size();
-        vector<vector<int>> out(m, vector<int>(n));
         queue<pair<int, int>> q;
-        bool visited[m][n];
-        memset(visited, 0, sizeof(visited));
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
             {
                 if (mat[i][j] == 0)
                 {
-                    out[i][j] = 0;
-                    visited[i][j] = true;
                     q.push({i, j});
+                }
+                else
+                {
+                    mat[i][j] = -1;
                 }
             }
         }
-        vector<pair<int, int>> directions{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-        int dist = 0;
         while (!q.empty())
         {
-            int sz = q.size();
-            for (int k = 0; k < sz; k++)
+            int size = q.size();
+            for (int i = 0; i < size; i++)
             {
-                auto [i, j] = q.front();
+                pair<int, int> p = q.front();
                 q.pop();
-                if (mat[i][j] == 1)
+                int y = p.first, x = p.second;
+                for (const auto &[dy, dx] : directions)
                 {
-                    out[i][j] = dist;
-                }
-                for (auto &dir : directions)
-                {
-                    int ni = i + dir.first, nj = j + dir.second;
-                    if (ni >= 0 && ni < m && nj >= 0 && nj < n && !visited[ni][nj])
+                    if (isValid(y + dy, x + dx, m, n) and mat[y + dy][x + dx] == -1)
                     {
-                        visited[ni][nj] = true;
-                        q.push({ni, nj});
+                        mat[y + dy][x + dx] = mat[y][x] + 1;
+                        q.push({y + dy, x + dx});
                     }
                 }
             }
-            dist++;
         }
-        return out;
+        return mat;
     }
 };
 // @lc code=end
