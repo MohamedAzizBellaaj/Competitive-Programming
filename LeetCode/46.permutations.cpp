@@ -9,6 +9,7 @@ class Solution
 {
 private:
     vector<vector<int>> result;
+    
     void backtrack(vector<int> &curr, vector<int> &nums)
     {
         if (curr.size() == nums.size())
