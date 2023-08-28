@@ -7,25 +7,27 @@
 // @lc code=start
 class MyStack
 {
-public:
+private:
     queue<int> q;
 
+public:
     void push(int x)
     {
-        int sz = q.size();
+        unsigned long long size = q.size();
         q.push(x);
-        while (sz--)
+        while (size > 0)
         {
             q.push(q.front());
             q.pop();
+            size--;
         }
     }
 
     int pop()
     {
-        int out = q.front();
+        int back = q.front();
         q.pop();
-        return out;
+        return back;
     }
 
     int top()
