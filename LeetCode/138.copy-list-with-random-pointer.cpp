@@ -26,38 +26,36 @@ class Solution
 public:
     Node *copyRandomList(Node *head)
     {
-        if (head == nullptr)
+        Node *iter = head, *next;
+        while (iter != nullptr)
         {
-            return nullptr;
+            next = iter->next;
+            Node *copy = new Node(iter->val);
+            iter->next = copy;
+            copy->next = next;
+            iter = next;
         }
-        Node *nhead = head;
-        while (nhead)
+        iter = head;
+        while (iter != nullptr)
         {
-            Node *tmp = new Node(nhead->val);
-            tmp->next = nhead->next;
-            nhead->next = tmp;
-            nhead = nhead->next->next;
-        }
-        nhead = head;
-        Node *start = nhead->next, *buf = start;
-        while (nhead)
-        {
-            if (nhead->random != nullptr)
+            if (iter->random != nullptr)
             {
-                buf->random = nhead->random->next;
+                iter->next->random = iter->random->next;
             }
-            nhead = nhead->next->next;
-            buf = nhead ? nhead->next : nullptr;
+            iter = iter->next->next;
         }
-        nhead = head, buf = start;
-        while (nhead)
+        Node *out = new Node(0), *iterCopy = out, *copy;
+        iter = head;
+        while (iter != nullptr)
         {
-            nhead->next = nhead->next->next;
-            nhead = nhead->next;
-            buf->next = nhead ? nhead->next : nullptr;
-            buf = buf->next;
+            copy = iter->next;
+            iterCopy->next = copy;
+            iterCopy = copy;
+            next = iter->next->next;
+            iter->next = next;
+            iter = next;
         }
-        return start;
+        return out->next;
     }
 };
 // @lc code=end
