@@ -8,22 +8,18 @@
 # @lc code=start
 class Solution:
     def maxProductDifference(self, nums: List[int]) -> int:
-        max = float("-inf")
-        second_max = float("-inf")
-        min = float("inf")
-        second_min = float("inf")
+        max = second_max = 0
+        min = second_min = 1e4
 
         for i in nums:
             if max <= i:
-                second_max = max
-                max = i
+                max, second_max = i, max
 
             elif second_max <= i:
                 second_max = i
 
             if min >= i:
-                second_min = min
-                min = i
+                min, second_min = i, min
 
             elif second_min >= i:
                 second_min = i
