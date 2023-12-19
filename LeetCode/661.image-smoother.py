@@ -27,7 +27,7 @@ class Solution:
         ]
 
         def is_valid(y, x, m, n):
-            return y >= 0 and y < m and x >= 0 and x < n
+            return 0 <= y < m and 0 <= x < n
 
         for i in range(m):
             for j in range(n):
