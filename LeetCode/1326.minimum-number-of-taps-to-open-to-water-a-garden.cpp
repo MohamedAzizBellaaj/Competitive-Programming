@@ -12,14 +12,16 @@ public:
     {
         int maxReach[n + 1];
         memset(maxReach, 0, sizeof(maxReach));
+
         for (int i = 0; i < n + 1; i++)
         {
             int start = max(0, i - ranges[i]);
             int end = min(n, ranges[i] + i);
             maxReach[start] = max(maxReach[start], end);
         }
-        
+
         int taps = 0, currEnd = 0, nextEnd = 0;
+
         for (int i = 0; i < n + 1; i++)
         {
             if (i > nextEnd)
@@ -33,6 +35,7 @@ public:
             }
             nextEnd = max(nextEnd, maxReach[i]);
         }
+
         return taps;
     }
 };
