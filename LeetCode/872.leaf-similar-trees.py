@@ -24,7 +24,7 @@ class Solution:
             dfs(root.left, leafs)
             dfs(root.right, leafs)
 
-        leafs1 = leafs2 = []
+        leafs1, leafs2 = [], []
         dfs(root1, leafs1)
         dfs(root2, leafs2)
 
