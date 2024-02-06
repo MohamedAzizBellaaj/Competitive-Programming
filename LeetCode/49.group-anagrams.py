@@ -5,7 +5,7 @@
 #
 
 # @lc code=start
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 
 class Solution:
