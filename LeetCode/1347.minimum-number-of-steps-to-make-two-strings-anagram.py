@@ -6,18 +6,21 @@
 
 
 # @lc code=start
+from collections import Counter
+
+
 class Solution:
     def minSteps(self, s: str, t: str) -> int:
-        count = collections.Counter(s)
-        res = 0
+        count = Counter(s)
+        result = 0
 
         for c in t:
             if count[c] > 0:
                 count[c] -= 1
             else:
-                res += 1
+                result += 1
 
-        return res
+        return result
 
 
 # @lc code=end
